@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SplashViewController : UIViewController
+@interface SplashViewController : BaseViewController
+
+@property (weak, nonatomic) IBOutlet UIImageView *uiImageViewLogo2;
+@property (weak, nonatomic) IBOutlet UIImageView *uiImageViewLogo1;
 
 @end

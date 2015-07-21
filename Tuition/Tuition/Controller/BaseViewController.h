@@ -10,4 +10,7 @@
 
 @interface BaseViewController : UIViewController
 
+/*----- Hide Navigation -----*/
+- (void)hideNavigationBar;
+
 @end

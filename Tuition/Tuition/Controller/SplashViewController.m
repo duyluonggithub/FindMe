@@ -8,6 +8,9 @@
 
 #import "SplashViewController.h"
 
+const float TIME_DELAY = 2.0;
+__strong NSString *IDENTIFIER_SEGUE_ABOUT = @"IdentifierSegueAbout";
+
 @interface SplashViewController ()
 
 @end
@@ -16,22 +19,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    //Hide Navigation Bar
+    [self hideNavigationBar];
+    
+    //Init Logo
+    [self initLogo];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated
+{
+    //Goto screen About
+    [self performSelector:@selector(goToAboutScreen:) withObject:nil afterDelay:TIME_DELAY];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)initLogo
+{
+    CGRect frameOfLogo1 = self.uiImageViewLogo1.frame;
+    CGRect frameOfLogo1New = self.uiImageViewLogo1.frame;
+    frameOfLogo1New.origin.y -= TIME_DELAY* frameOfLogo1New.size.height;
+    self.uiImageViewLogo1.frame = frameOfLogo1New;
+    
+    [UIView animateWithDuration:TIME_DELAY animations:^{
+        self.uiImageViewLogo1.frame = frameOfLogo1;
+    }];
+    
 }
-*/
+
+- (void)goToAboutScreen:(id)sender{
+    [self performSegueWithIdentifier:IDENTIFIER_SEGUE_ABOUT sender:sender];
+}
 
 @end
